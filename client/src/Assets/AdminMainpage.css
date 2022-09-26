@@ -1,0 +1,30 @@
+#header {
+    width: 100%;
+    height: 100px;
+}
+
+#header .navbar {
+    height: 100%;
+    background-color: darkblue;
+}
+
+#header .navbar .navbar-brand {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#header .navbar button {
+    border: none;
+    background: none;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    #header {
+        height: 60px;
+    }
+
+    #header .navbar .navbar-brand {
+        font-size: 18px;
+    }
+}

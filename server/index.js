@@ -30,4 +30,3 @@ app.listen(port, () => {
     /api/ .. 
     ex) /api/user : user에 관련된 router 
 */
-app.use("/api/user", require("./Router/user.js"));
