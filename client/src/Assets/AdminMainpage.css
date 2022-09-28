@@ -19,12 +19,44 @@
     color: #ffffff;
 }
 
+#admin-body {
+    margin-top: 3rem;
+}
+
+#admin-body .admin-body-title h2 {
+    font-weight: bold;
+}
+
+#admin-body .admin-body-content {
+    margin-top: 2rem;
+}
+
+#admin-body .admin-body-submit-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#admin-body .admin-body-submit-button button {
+    border: none;
+    background-color: blue;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
+
     #header {
         height: 60px;
     }
 
     #header .navbar .navbar-brand {
+        font-size: 18px;
+    }
+
+    #admin-body .admin-body-title h2 {
         font-size: 18px;
     }
 }

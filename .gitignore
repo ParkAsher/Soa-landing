@@ -2,7 +2,7 @@
 
 client/node_modules
 client/package-lock.json
-client/firebase.js
+client/src/firebase.js
 
 server/config/dev.js
 server/node_modules

@@ -7,6 +7,7 @@ const port = 5000;
 /* config */
 const config = require("./config/dev.js");
 
+app.use("/image", express.static("./image"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,3 +31,4 @@ app.listen(port, () => {
     /api/ .. 
     ex) /api/user : user에 관련된 router 
 */
+app.use("/api/post", require("./Router/post.js"));

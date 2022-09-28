@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
 /* assets */
 import '../Assets/Mainpage.css';
 import profileImage from '../Assets/SoaProfile.jpg';
-import studioImage from '../Assets/studio.jpg';
 
 function Mainpage() {
+
+    const [StudioImage, setStudioImage] = useState("");
+
+    useEffect(() => {
+
+        axios.get("/api/post/image").then((res) => {
+
+            if (res.data.success) {
+                setStudioImage(res.data.filePath);
+            }
+
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }, [])
 
     return (
         <>
@@ -43,7 +59,7 @@ function Mainpage() {
                     <div className='studio-info-content-wrap'>
                         {/* 작업실 사진 */}
                         <div className='studio-info-content-image'>
-                            <img src={studioImage} alt='studioImage'></img>
+                            <img src={`http://localhost:5000/${StudioImage}`} alt='studioImage'></img>
                         </div>
                         {/* 작업실 소개글 */}
                         <div className='studio-info-content-text'>
