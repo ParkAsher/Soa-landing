@@ -46,6 +46,7 @@ router.post("/image/upload", (req, res) => {
 router.post("/submit", (req, res) => {
 
     let temp = {
+        imageType: req.body.imageType,
         image: req.body.image
     }
 
@@ -62,9 +63,9 @@ router.post("/submit", (req, res) => {
 
 })
 
-router.get("/image", (req, res) => {
+router.post("/profileimage", (req, res) => {
 
-    Post.findOne().sort({ createdAt: -1 }).exec().then((doc) => {
+    Post.findOne({ imageType: "profile" }).sort({ createdAt: -1 }).exec().then((doc) => {
 
         res.status(200).json({ success: true, filePath: doc.image });
 
@@ -75,6 +76,18 @@ router.get("/image", (req, res) => {
 
 })
 
+router.post("/studioimage", (req, res) => {
+
+    Post.findOne({ imageType: "studio" }).sort({ createdAt: -1 }).exec().then((doc) => {
+
+        res.status(200).json({ success: true, filePath: doc.image });
+
+    }).catch((err) => {
+
+        res.status(400).json({ success: false })
+    })
+
+})
 
 
 

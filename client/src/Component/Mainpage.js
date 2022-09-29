@@ -4,25 +4,43 @@ import axios from 'axios';
 
 /* assets */
 import '../Assets/Mainpage.css';
-import profileImage from '../Assets/SoaProfile.jpg';
 
 function Mainpage() {
 
+    const [ProfileImage, setProfileImage] = useState("");
     const [StudioImage, setStudioImage] = useState("");
 
     useEffect(() => {
 
-        axios.get("/api/post/image").then((res) => {
+        axios.post("/api/post/profileimage").then((res) => {
 
             if (res.data.success) {
-                setStudioImage(res.data.filePath);
+                setProfileImage(`http://localhost:5000/${res.data.filePath}`);
             }
 
         }).catch((err) => {
             console.log(err);
         })
 
-    }, [])
+    }, [ProfileImage])
+
+
+    useEffect(() => {
+
+        axios.post("/api/post/studioimage").then((res) => {
+
+            if (res.data.success) {
+                setStudioImage(`http://localhost:5000/${res.data.filePath}`);
+            }
+
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+    }, [StudioImage])
+
+
 
     return (
         <>
@@ -31,7 +49,7 @@ function Mainpage() {
                     <div className='reservation-view-content-wrap'>
                         <div className='reservation-view-content-image-wrap'>
                             <div className='reservation-view-content-image'>
-                                <img src={profileImage} alt='profileImage'></img>
+                                <img src={ProfileImage} alt='profileImage'></img>
                             </div>
                         </div>
                         <div className='reservation-view-content-name'>
@@ -59,7 +77,7 @@ function Mainpage() {
                     <div className='studio-info-content-wrap'>
                         {/* 작업실 사진 */}
                         <div className='studio-info-content-image'>
-                            <img src={`http://localhost:5000/${StudioImage}`} alt='studioImage'></img>
+                            <img src={StudioImage} alt='studioImage'></img>
                         </div>
                         {/* 작업실 소개글 */}
                         <div className='studio-info-content-text'>
