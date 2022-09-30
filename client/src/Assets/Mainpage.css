@@ -83,7 +83,6 @@
 
 #studio-info-wrap .studio-info-content-wrap {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -104,4 +103,25 @@
 #studio-info-wrap .studio-info-content-wrap .studio-info-content-text {
     width: 300px;
     color: #ffffff;
+    display: flex;
+    flex-direction: column;    
+    text-align: center;
+}
+
+#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-location {
+    font-size: 18px;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 0.5px solid lightgray;
+}
+
+#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-etc {
+    font-size: 18px;
+    padding: 0.5rem 0;
 }

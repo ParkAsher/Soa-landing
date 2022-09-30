@@ -24,7 +24,6 @@ function Mainpage() {
 
     }, [ProfileImage])
 
-
     useEffect(() => {
 
         axios.post("/api/post/studioimage").then((res) => {
@@ -39,8 +38,6 @@ function Mainpage() {
 
 
     }, [StudioImage])
-
-
 
     return (
         <>
@@ -81,9 +78,16 @@ function Mainpage() {
                         </div>
                         {/* 작업실 소개글 */}
                         <div className='studio-info-content-text'>
-                            <p>동촌역 인근 도보 5분거리</p>
-                            <p>공유 오피스</p>
-                            <p>주차 가능</p>
+                            <div className='studio-info-content-text-title'>
+                                <span>작업실 소개</span>
+                            </div>
+                            <div className='studio-info-content-text-location'>
+                                <span>작업실 위치</span>
+                            </div>
+                            <div className='studio-info-content-text-etc'>
+                                <p>공유 오피스</p>
+                                <p>주차 가능</p>
+                            </div>
                         </div>
                     </div>
                 </Container>

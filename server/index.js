@@ -32,3 +32,4 @@ app.listen(port, () => {
     ex) /api/user : user에 관련된 router 
 */
 app.use("/api/post", require("./Router/post.js"));
+app.use("/api/info", require("./Router/info.js"));

@@ -17,6 +17,9 @@ function AdminMainpage() {
     const [ProfileImage, setProfileImage] = useState("");
     const [StudioImage, setStudioImage] = useState("");
 
+    const [StudioLocation, setStudioLocation] = useState("");
+    const [StudioEtc, setStudioEtc] = useState("");
+
     const user = useSelector((state) => state.user);
 
     useEffect(() => {
@@ -126,6 +129,53 @@ function AdminMainpage() {
         })
     }
 
+    /* 작업실 위치 */
+    const locationonsubmit = (e) => {
+        e.preventDefault();
+
+        if (StudioLocation === "") {
+            return alert("작업실 위치를 입력해주세요.")
+        }
+
+        let body = {
+            infoType: "location",
+            info: StudioLocation
+        }
+
+        axios.post("/api/info/submit", body).then((res) => {
+            if (res.data.success) {
+                window.location.reload();
+            } else {
+                alert("작업실 위치 등록 실패");
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    /* 작업실 설명 */
+    const etconsubmit = (e) => {
+        e.preventDefault();
+
+        if (StudioEtc === "") {
+            return alert("작업실 설명을 입력해주세요.")
+        }
+
+        let body = {
+            infoType: "etc",
+            info: StudioEtc
+        }
+
+        axios.post("/api/info/submit", body).then((res) => {
+            if (res.data.success) {
+                window.location.reload();
+            } else {
+                alert("작업실 설명 등록 실패");
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
         <>
@@ -160,6 +210,32 @@ function AdminMainpage() {
                         <div className='admin-body-submit-button'>
                             <button onClick={(e) => { studioonSubmit(e) }}>등록</button>
                         </div>
+                    </div>
+                    <div className='admin-body-studio-info'>
+                        <div className='admin-body-title'>
+                            <h2>작업실 소개 수정</h2>
+                        </div>
+                        <div className='admin-body-content'>
+                            <div className='admin-body-content-subtitle'>
+                                <span>작업실 위치</span>
+                            </div>
+                            <div>
+                                <Form.Control type='text' onChange={(e) => setStudioLocation(e.currentTarget.value)}></Form.Control>
+                            </div>
+                            <div className='admin-body-submit-button'>
+                                <button onClick={(e) => { locationonsubmit(e) }}>등록</button>
+                            </div>
+                            <div className='admin-body-content-subtitle'>
+                                <span>작업실 설명</span>
+                            </div>
+                            <div>
+                                <Form.Control as='textarea' onChange={(e) => setStudioEtc(e.currentTarget.value)}></Form.Control>
+                            </div>
+                            <div className='admin-body-submit-button'>
+                                <button onClick={(e) => { etconsubmit(e) }}>등록</button>
+                            </div>
+                        </div>
+
                     </div>
                 </Container>
             </div>
