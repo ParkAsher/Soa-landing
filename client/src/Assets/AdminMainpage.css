@@ -23,12 +23,13 @@
     margin-top: 3rem;
 }
 
+#admin-body .admin-body-reservation-status,
+#admin-body .admin-body-reservation,
 #admin-body .admin-body-profile-image,
 #admin-body .admin-body-profile-intro,
 #admin-body .admin-body-studio-image,
 #admin-body .admin-body-studio-info {
-    padding: 2rem 0;
-    border-bottom: 2px solid lightgray;   
+    margin-bottom: 3rem;
 
 }
 
@@ -38,6 +39,28 @@
 
 #admin-body .admin-body-content {
     margin-top: 2rem;
+}
+
+#admin-body .admin-body-reservation-status table {
+    text-align: center;
+    margin-top: 0.75rem;
+}
+
+#admin-body .admin-body-reservation-status table thead {
+    background-color: #ced4da;
+}
+
+#admin-body .admin-body-reservation-status table tbody {
+    font-size: 14px;
+}
+
+#admin-body .admin-body-reservation .admin-body-content .admin-body-content-first {
+    display: flex;
+    justify-content: space-between;
+}
+
+#admin-body .admin-body-reservation .admin-body-content .admin-body-content-second {
+    margin-top: 10px;
 }
 
 #admin-body .admin-body-submit-button {
@@ -86,4 +109,10 @@ textarea {
     #admin-body .admin-body-content .admin-body-content-subtitle span {
         font-size: 16px;
     }
+
+    #admin-body .admin-body-reservation .admin-body-content .admin-body-content-first {
+        flex-direction: column;
+        gap: 10px;
+    }
+
 }

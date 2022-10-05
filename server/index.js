@@ -33,3 +33,4 @@ app.listen(port, () => {
 */
 app.use("/api/post", require("./Router/post.js"));
 app.use("/api/info", require("./Router/info.js"));
+app.use("/api/reserve", require("./Router/reserve.js"));

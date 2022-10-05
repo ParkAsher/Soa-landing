@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import firebase from '../firebase';
-import { Container, Form, Navbar } from 'react-bootstrap';
+import { Container, Dropdown, DropdownButton, Form, Navbar, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser, loginUser } from '../Reducer/userSlice';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Datepicker from 'react-datepicker';
+import { ko } from 'date-fns/esm/locale';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 /* assets */
 import '../Assets/AdminMainpage.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function AdminMainpage() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [Sort, setSort] = useState("예약");
+    const [ReserveList, setReserveList] = useState([]);
+
+    const [ReserveType, setReserveType] = useState("예약");
+    const [StartDate, setStartDate] = useState(new Date());
+    const [ReserveName, setReserveName] = useState("");
+    const [ReserveEtc, setReserveEtc] = useState("");
 
     const [ProfileImage, setProfileImage] = useState("");
     const [ProfileIntro, setProfileIntro] = useState("");
@@ -49,6 +62,55 @@ function AdminMainpage() {
     const logoutHandler = () => {
         firebase.auth().signOut();
         navigate("/adm");
+    }
+
+    /* list */
+    const getreservelist = () => {
+
+        let body = {
+            sort: Sort,
+        }
+
+        axios.post("/api/reserve/list", body).then((res) => {
+
+            if (res.data.success) {
+                setReserveList([...res.data.reserveList]);
+            }
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    useEffect(() => {
+        getreservelist();
+    }, [Sort])
+
+    /* reserve */
+    const reserveonsubmit = (e) => {
+        e.preventDefault();
+
+        if (ReserveType === "예약" && ReserveName === "") {
+            return alert("이름을 입력해주세요.");
+        }
+
+        let body = {
+            reserveType: ReserveType,
+            reserveDate: moment(StartDate).format("YYYY-MM-DD"),
+            reserveName: ReserveName,
+            reserveEtc: ReserveEtc,
+        }
+
+        axios.post("/api/reserve/submit", body).then((res) => {
+            if (res.data.success) {
+                window.location.reload();
+            } else {
+                alert("일정 등록 실패!");
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+
     }
 
     /* studio */
@@ -216,6 +278,62 @@ function AdminMainpage() {
             </header>
             <div id='admin-body'>
                 <Container>
+                    <div className='admin-body-reservation-status'>
+                        <div className='admin-body-title'>
+                            <h2>일정</h2>
+                        </div>
+                        <div className='admin-body-content'>
+                            <DropdownButton variant='outline-secondary' title={Sort} >
+                                <Dropdown.Item onClick={() => setSort("예약")}>예약</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setSort("휴무")}>휴무</Dropdown.Item>
+                            </DropdownButton>
+                            <Table bordered>
+                                <thead>
+                                    <tr>
+                                        <th >종류</th>
+                                        <th >날짜</th>
+                                        <th >이름</th>
+                                        <th >특이사항</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {ReserveList.map((reserve, idx) => {
+                                        return (
+                                            <tr key={idx}>
+                                                <td>{reserve.reserveType}</td>
+                                                <td>{moment(reserve.reserveDate).format("YYYY년 MM월 DD일")}</td>
+                                                <td>{reserve.reserveName}</td>
+                                                <td>{reserve.reserveEtc}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </Table>
+
+                        </div>
+                    </div>
+                    <div className='admin-body-reservation'>
+                        <div className='admin-body-title'>
+                            <h2>예약 / 휴무 등록</h2>
+                            <p style={{ color: "red" }}>예약/휴무, 날짜, 이름, 특이사항</p>
+                        </div>
+                        <div className='admin-body-content'>
+                            <div className='admin-body-content-first'>
+                                <Form.Select defaultValue={ReserveType} onChange={(e) => setReserveType(e.currentTarget.value)}>
+                                    <option value="예약">예약</option>
+                                    <option value="휴무">휴뮤</option>
+                                </Form.Select>
+                                <Datepicker className='form-control' dateFormat="yyyy/MM/dd" locale={ko} selected={StartDate} minDate={new Date()} onChange={(date) => setStartDate(date)}></Datepicker>
+                                <Form.Control type='text' onChange={(e) => setReserveName(e.currentTarget.value)} placeholder="이름" disabled={ReserveType === "휴무" ? true : false}></Form.Control>
+                            </div>
+                            <div className='admin-body-content-second'>
+                                <Form.Control type='text' onChange={(e) => setReserveEtc(e.currentTarget.value)} placeholder="특이사항"></Form.Control>
+                            </div>
+                        </div>
+                        <div className='admin-body-submit-button'>
+                            <button onClick={(e) => reserveonsubmit(e)}>등록</button>
+                        </div>
+                    </div>
                     <div className='admin-body-profile-image'>
                         <div className='admin-body-title'>
                             <h2>프로필 이미지 수정</h2>
@@ -276,7 +394,7 @@ function AdminMainpage() {
 
                     </div>
                 </Container>
-            </div>
+            </div >
         </>
     )
 }
