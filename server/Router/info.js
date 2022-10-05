@@ -21,4 +21,30 @@ router.post("/submit", (req, res) => {
 
 })
 
+router.post("/profileintro", (req, res) => {
+    Info.findOne({ infoType: "intro" }).sort({ createdAt: -1 }).exec().then((doc) => {
+        res.status(200).json({ success: true, intro: doc.info });
+    }).catch((err) => {
+        res.status(400).json({ success: false })
+    })
+})
+
+router.post("/studiolocation", (req, res) => {
+    Info.findOne({ infoType: "location" }).sort({ createdAt: -1 }).exec().then((doc) => {
+
+        res.status(200).json({ success: true, location: doc.info });
+    }).catch((err) => {
+        res.status(400).json({ success: false });
+    })
+})
+
+router.post("/studioetc", (req, res) => {
+    Info.findOne({ infoType: "etc" }).sort({ createdAt: -1 }).exec().then((doc) => {
+
+        res.status(200).json({ success: true, etc: doc.info });
+    }).catch((err) => {
+        res.status(400).json({ success: false });
+    })
+})
+
 module.exports = router;

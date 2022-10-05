@@ -8,7 +8,10 @@ import '../Assets/Mainpage.css';
 function Mainpage() {
 
     const [ProfileImage, setProfileImage] = useState("");
+    const [ProfileIntro, setProfileIntro] = useState("");
     const [StudioImage, setStudioImage] = useState("");
+    const [StudioLocation, setStudioLocation] = useState("");
+    const [StudioEtc, setStudioEtc] = useState("");
 
     useEffect(() => {
 
@@ -26,6 +29,18 @@ function Mainpage() {
 
     useEffect(() => {
 
+        axios.post("/api/info/profileintro").then((res) => {
+            if (res.data.success) {
+                setProfileIntro(res.data.intro);
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }, [ProfileIntro])
+
+    useEffect(() => {
+
         axios.post("/api/post/studioimage").then((res) => {
 
             if (res.data.success) {
@@ -36,8 +51,30 @@ function Mainpage() {
             console.log(err);
         })
 
-
     }, [StudioImage])
+
+    useEffect(() => {
+
+        axios.post("/api/info/studiolocation").then((res) => {
+            if (res.data.success) {
+                setStudioLocation(res.data.location);
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }, [StudioLocation])
+
+    useEffect(() => {
+        axios.post("/api/info/studioetc").then((res) => {
+            if (res.data.success) {
+                setStudioEtc(res.data.etc);
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }, [StudioEtc])
 
     return (
         <>
@@ -53,8 +90,7 @@ function Mainpage() {
                             <span>SO.A</span>
                         </div>
                         <div className='reservation-view-content-intro'>
-                            <p>자기소개 공간입니다.</p>
-                            <p>자기소개를 입력하세요.</p>
+                            <p style={{ whiteSpace: "pre-line", lineHeight: "2rem" }}>{ProfileIntro}</p>
                         </div>
                         <div className='reservation-view-content-link'>
                             <a href='https://www.instagram.com/so.a_tattoo'>
@@ -82,11 +118,10 @@ function Mainpage() {
                                 <span>작업실 소개</span>
                             </div>
                             <div className='studio-info-content-text-location'>
-                                <span>작업실 위치</span>
+                                <p>{StudioLocation}</p>
                             </div>
                             <div className='studio-info-content-text-etc'>
-                                <p>공유 오피스</p>
-                                <p>주차 가능</p>
+                                <p style={{ whiteSpace: "pre-line", lineHeight: "2rem" }}>{StudioEtc}</p>
                             </div>
                         </div>
                     </div>

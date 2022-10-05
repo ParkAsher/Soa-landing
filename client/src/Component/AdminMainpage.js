@@ -15,6 +15,8 @@ function AdminMainpage() {
     const dispatch = useDispatch();
 
     const [ProfileImage, setProfileImage] = useState("");
+    const [ProfileIntro, setProfileIntro] = useState("");
+
     const [StudioImage, setStudioImage] = useState("");
 
     const [StudioLocation, setStudioLocation] = useState("");
@@ -177,6 +179,31 @@ function AdminMainpage() {
         })
     }
 
+    /* 프로필 자기소개 */
+    const introonsubmit = (e) => {
+        e.preventDefault();
+
+        if (ProfileIntro === "") {
+            return alert("자기소개를 입력해주세요.")
+        }
+
+        let body = {
+            infoType: "intro",
+            info: ProfileIntro
+        }
+
+        axios.post("/api/info/submit", body).then((res) => {
+            if (res.data.success) {
+                window.location.reload();
+            } else {
+                alert("자기소개 등록 실패");
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+
     return (
         <>
             <header id='header'>
@@ -198,6 +225,17 @@ function AdminMainpage() {
                         </div>
                         <div className='admin-body-submit-button'>
                             <button onClick={(e) => { profileonsubmit(e) }}>등록</button>
+                        </div>
+                    </div>
+                    <div className='admin-body-profile-intro'>
+                        <div className='admin-body-title'>
+                            <h2>프로필 자기소개 수정</h2>
+                        </div>
+                        <div className='admin-body-content'>
+                            <Form.Control as="textarea" onChange={(e) => setProfileIntro(e.currentTarget.value)}></Form.Control>
+                        </div>
+                        <div className='admin-body-submit-button'>
+                            <button onClick={(e) => { introonsubmit(e) }}>등록</button>
                         </div>
                     </div>
                     <div className='admin-body-studio-image'>
