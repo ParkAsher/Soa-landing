@@ -1,9 +1,6 @@
-.vscode
+/client/node_modules
+/client/package-lock.json
 
-client/node_modules
-client/package-lock.json
-client/src/firebase.js
-
-server/config/dev.js
-server/node_modules
-server/package-lock.json
+/server/config/dev.js
+/node_modules
+/package-lock.json
