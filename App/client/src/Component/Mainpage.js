@@ -47,7 +47,7 @@ function Mainpage() {
         axios.post("/api/post/studioimage").then((res) => {
 
             if (res.data.success) {
-                setStudioImage(`http://soa-landing.herokuapp.com/${res.data.filePath}`);
+                setStudioImage(`http://soa-landing.herokuapp.com/server/${res.data.filePath}`);
             }
 
         }).catch((err) => {
