@@ -1,0 +1,133 @@
+#header {
+    width: 100%;
+    height: 100px;
+}
+
+#header .navbar {
+    height: 100%;
+    background-color: darkblue;
+}
+
+#header .navbar .navbar-brand {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#header .navbar button {
+    border: none;
+    background: none;
+    color: #ffffff;
+}
+
+#admin-body {
+    margin-top: 3rem;
+}
+
+#admin-body .admin-body-reservation-status,
+#admin-body .admin-body-reservation,
+#admin-body .admin-body-profile-image,
+#admin-body .admin-body-profile-intro,
+#admin-body .admin-body-studio-image,
+#admin-body .admin-body-studio-info {
+    margin-bottom: 3rem;
+
+}
+
+#admin-body .admin-body-title h2 {
+    font-weight: bold;
+}
+
+#admin-body .admin-body-content {
+    margin-top: 2rem;
+}
+
+#admin-body .admin-body-reservation-status .admin-body-content-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+#admin-body .admin-body-reservation-status .admin-body-content-btn .admin-body-content-btn-right button {
+    border: none;
+    background-color: red;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#admin-body .admin-body-reservation-status table {
+    text-align: center;
+    margin-top: 0.75rem;
+}
+
+#admin-body .admin-body-reservation-status table thead {
+    background-color: #ced4da;
+}
+
+#admin-body .admin-body-reservation-status table tbody {
+    font-size: 14px;
+}
+
+#admin-body .admin-body-reservation .admin-body-content .admin-body-content-first {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#admin-body .admin-body-reservation .admin-body-content .admin-body-content-second {
+    margin-top: 10px;
+}
+
+#admin-body .admin-body-submit-button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#admin-body .admin-body-submit-button button {
+    border: none;
+    background-color: darkblue;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#admin-body .admin-body-content .admin-body-content-subtitle {
+    margin-bottom: 0.5rem;
+}
+
+#admin-body .admin-body-content .admin-body-content-subtitle span {
+    font-size: 18px;
+    color: #999999;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+@media (max-width: 768px) {
+
+    #header {
+        height: 60px;
+    }
+
+    #header .navbar .navbar-brand {
+        font-size: 18px;
+    }
+
+    #admin-body .admin-body-title h2 {
+        font-size: 18px;
+    }
+
+    #admin-body .admin-body-content .admin-body-content-subtitle span {
+        font-size: 16px;
+    }
+
+    #admin-body .admin-body-reservation .admin-body-content .admin-body-content-first {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
