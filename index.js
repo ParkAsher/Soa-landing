@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 /* config */
-const config = require("./server/config/dev.js");
+const config = require("./server/config/key.js");
 
 
 app.use(express.static(path.join(__dirname, "./client/build")));
