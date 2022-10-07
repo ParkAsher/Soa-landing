@@ -21,7 +21,7 @@ function Mainpage() {
         axios.post("/api/post/profileimage").then((res) => {
 
             if (res.data.success) {
-                setProfileImage(`https://soa-landing.herokuapp.com/${res.data.filePath}`);
+                setProfileImage(`http://soa-landing.herokuapp.com/${res.data.filePath}`);
             }
 
         }).catch((err) => {
@@ -47,7 +47,7 @@ function Mainpage() {
         axios.post("/api/post/studioimage").then((res) => {
 
             if (res.data.success) {
-                setStudioImage(`https://soa-landing.herokuapp.com/${res.data.filePath}`);
+                setStudioImage(`http://soa-landing.herokuapp.com/${res.data.filePath}`);
             }
 
         }).catch((err) => {
