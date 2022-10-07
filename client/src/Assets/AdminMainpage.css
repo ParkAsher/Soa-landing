@@ -41,6 +41,20 @@
     margin-top: 2rem;
 }
 
+#admin-body .admin-body-reservation-status .admin-body-content-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+#admin-body .admin-body-reservation-status .admin-body-content-btn .admin-body-content-btn-right button {
+    border: none;
+    background-color: red;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 #admin-body .admin-body-reservation-status table {
     text-align: center;
     margin-top: 0.75rem;
@@ -57,6 +71,7 @@
 #admin-body .admin-body-reservation .admin-body-content .admin-body-content-first {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 #admin-body .admin-body-reservation .admin-body-content .admin-body-content-second {

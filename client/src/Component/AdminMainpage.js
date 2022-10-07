@@ -22,6 +22,9 @@ function AdminMainpage() {
     const [Sort, setSort] = useState("예약");
     const [ReserveList, setReserveList] = useState([]);
 
+    const [IsChecked, setIsChecked] = useState(false);
+    const [CheckedId, setCheckedId] = useState("");
+
     const [ReserveType, setReserveType] = useState("예약");
     const [StartDate, setStartDate] = useState(new Date());
     const [ReserveName, setReserveName] = useState("");
@@ -84,6 +87,8 @@ function AdminMainpage() {
 
     useEffect(() => {
         getreservelist();
+        setIsChecked(false);
+        setCheckedId("");
     }, [Sort])
 
     /* reserve */
@@ -265,6 +270,41 @@ function AdminMainpage() {
         })
     }
 
+    const inputCheckedId = (e, id) => {
+
+        if (e.target.checked) {
+            setIsChecked(true)
+            setCheckedId(id)
+        } else {
+            setIsChecked(false)
+            setCheckedId("")
+        }
+
+    }
+
+    const checkedReserveDelete = (e) => {
+        e.preventDefault();
+
+        if (IsChecked === false || CheckedId === "") {
+            return alert("삭제할 일정을 선택해주세요!");
+        }
+
+        let body = {
+            reserveId : CheckedId,
+        }
+
+        axios.post("/api/reserve/delete", body).then((res) => {
+
+            if (res.data.success) {
+                window.location.reload();
+            } else {
+                alert("삭제에 실패했습니다.")
+            }
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
         <>
@@ -283,23 +323,33 @@ function AdminMainpage() {
                             <h2>일정</h2>
                         </div>
                         <div className='admin-body-content'>
-                            <DropdownButton variant='outline-secondary' title={Sort} >
-                                <Dropdown.Item onClick={() => setSort("예약")}>예약</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setSort("휴무")}>휴무</Dropdown.Item>
-                            </DropdownButton>
+                            <div className='admin-body-content-btn'>
+                                <div className='admin-body-content-btn-left'>
+                                    <DropdownButton variant='outline-secondary' title={Sort} >
+                                        <Dropdown.Item onClick={() => setSort("예약")}>예약</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => setSort("휴무")}>휴무</Dropdown.Item>
+                                    </DropdownButton>
+                                </div>
+                                <div className='admin-body-content-btn-right'>
+                                    <button onClick={(e) => checkedReserveDelete(e)}>삭제</button>
+                                </div>
+                            </div>
                             <Table bordered>
                                 <thead>
                                     <tr>
-                                        <th >종류</th>
-                                        <th >날짜</th>
-                                        <th >이름</th>
-                                        <th >특이사항</th>
+                                        <th></th>
+                                        <th>종류</th>
+                                        <th>날짜</th>
+                                        <th>이름</th>
+                                        <th>특이사항</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {ReserveList.map((reserve, idx) => {
                                         return (
                                             <tr key={idx}>
+                                                <td><Form.Check onChange={(e) => { inputCheckedId(e, reserve._id)}} disabled={IsChecked && (CheckedId !== reserve._id) ? true : false }></Form.Check></td>
+                                                <td style={{display: "none"}}>{reserve._id}</td>
                                                 <td>{reserve.reserveType}</td>
                                                 <td>{moment(reserve.reserveDate).format("YYYY년 MM월 DD일")}</td>
                                                 <td>{reserve.reserveName}</td>
@@ -309,9 +359,9 @@ function AdminMainpage() {
                                     })}
                                 </tbody>
                             </Table>
-
                         </div>
                     </div>
+                    
                     <div className='admin-body-reservation'>
                         <div className='admin-body-title'>
                             <h2>예약 / 휴무 등록</h2>

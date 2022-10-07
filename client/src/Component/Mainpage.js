@@ -5,6 +5,9 @@ import axios from 'axios';
 /* assets */
 import '../Assets/Mainpage.css';
 
+/* components */
+import Calendar from './Calendar';
+
 function Mainpage() {
 
     const [ProfileImage, setProfileImage] = useState("");
@@ -101,6 +104,13 @@ function Mainpage() {
                             </a>
                         </div>
                     </div>
+                </Container>
+            </div>
+
+            {/* 달력 */}
+            <div>
+                <Container>
+                    <Calendar></Calendar>
                 </Container>
             </div>
 
