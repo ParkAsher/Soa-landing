@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -7,6 +8,7 @@ const port = process.env.PORT || 5000;
 /* config */
 const config = require("./server/config/key.js");
 
+app.use(express.static(path.join(__dirname, "./client/build")))
 app.use("/image", express.static("./server/image"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +26,14 @@ app.listen(port, () => {
 
     })
 
+})
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+})
+
+app.get("*", (req, res)=> {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
 /* 
