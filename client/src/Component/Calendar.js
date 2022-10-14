@@ -10,11 +10,11 @@ import "../Assets/Calendar.css";
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
     return (
-        <div className="header row">
+        <div className="header">
             <div className="col col-start">
                 <span className="text">
+                    <span>{format(currentMonth, "yyyy")}년 </span>
                     <span className="text month">{format(currentMonth, "MM")}월</span>
-                    {format(currentMonth, "yyyy")}
                 </span>
             </div>
             <div className="col col-end">
@@ -99,7 +99,7 @@ const RenderCells = ({ currentMonth, ReserveList }) => {
             day = addDays(day, 1);
         }
         rows.push(
-            <div className="row" key={day}>
+            <div className="day" key={day}>
                 {days}
             </div>
         );

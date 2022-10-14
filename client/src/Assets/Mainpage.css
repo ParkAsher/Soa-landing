@@ -10,37 +10,56 @@
     align-items: center;
     text-align: center;
 }
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-image-wrap {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-image-wrap {
     margin-bottom: 1rem;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-image-wrap .reservation-view-content-image {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-image-wrap
+    .reservation-view-content-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-image-wrap .reservation-view-content-image img {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-image-wrap
+    .reservation-view-content-image
+    img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-name {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-name {
     margin-bottom: 1rem;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-name span{
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-name
+    span {
     font-weight: bold;
     font-size: 36px;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-intro {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-intro {
     margin-bottom: 1rem;
 }
 
-#reservation-view-title-wrap .reservation-view-content-wrap .reservation-view-content-intro p {
+#reservation-view-title-wrap
+    .reservation-view-content-wrap
+    .reservation-view-content-intro
+    p {
     padding: 0;
     margin: 0.25rem;
     letter-spacing: 0.5px;
@@ -63,17 +82,21 @@
     color: #ffffff;
     font-size: 18px;
     margin-bottom: 1rem;
+    font-weight: bold;
 }
 
-#reservation-view-title-wrap .reservation-view-content-link .reservation-view-content-link-instagram {
-    background-image: url('../Assets/instabackground.jpg');
+#reservation-view-title-wrap
+    .reservation-view-content-link
+    .reservation-view-content-link-instagram {
+    background-image: url("../Assets/instabackground.jpg");
 }
 
-#reservation-view-title-wrap .reservation-view-content-link .reservation-view-content-link-kakao {
+#reservation-view-title-wrap
+    .reservation-view-content-link
+    .reservation-view-content-link-kakao {
     background-color: #f7e600;
     color: black;
 }
-
 
 /* studio-info */
 #studio-info-wrap {
@@ -89,7 +112,7 @@
 }
 
 #studio-info-wrap .studio-info-content-wrap .studio-info-content-image {
-    height: 300px; 
+    height: 300px;
     width: 300px;
 }
 
@@ -104,24 +127,33 @@
     width: 300px;
     color: #ffffff;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     text-align: center;
 }
 
-#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-title {
+#studio-info-wrap
+    .studio-info-content-wrap
+    .studio-info-content-text
+    .studio-info-content-text-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 1.5rem;
 }
 
-#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-location {
+#studio-info-wrap
+    .studio-info-content-wrap
+    .studio-info-content-text
+    .studio-info-content-text-location {
     font-size: 18px;
     padding: 0.5rem 0;
     margin-bottom: 1rem;
     border-bottom: 0.5px solid lightgray;
 }
 
-#studio-info-wrap .studio-info-content-wrap .studio-info-content-text .studio-info-content-text-etc {
+#studio-info-wrap
+    .studio-info-content-wrap
+    .studio-info-content-text
+    .studio-info-content-text-etc {
     font-size: 18px;
     padding: 0.5rem 0;
 }
